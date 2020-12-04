@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+		
+			body{
+				background-color: black;
+			}
+			@keyframes aa{
+				from{
+					opacity: 1;
+				}
+				to{
+					
+					transform: translateY(-100px)  scale(1.4);
+					opacity: 0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		
+		<i></i>
+		
+	</body>
+</html>
+
+<script type="text/javascript">
+	
+	// 当鼠标移动的时候
+	document.onmousemove = function(e){
+		var x = e.pageX;
+		var y = e.pageY;
+		// 获取屏幕坐标
+		// var x = e.offsetX;
+		// var y = e.offsetY;
+		// 获取body
+		var body = document.body;
+		//重点 创建一个span的盒子 赋值给yuan
+		var yuan = document.createElement('span');
+
+		// 重点: 把这个span追加到body中
+		body.appendChild(yuan);
+		// console.log(x,y)
+		// console.log(yuan)
+		
+		//重点 随机颜色获取
+		var r =Math.floor(Math.random()*255);
+		var g =Math.floor(Math.random()*775);
+		var b =Math.floor(Math.random()*255);
+		var a =Math.random();
+		var color = 'rgba('+ r+','+g+','+b+','+a+')';
+		console.log(color);
+		
+		// 随机宽度/高度
+		var size = Math.random()*100;
+		
+		
+		
+		// 因为span是行内  所以先设个定位让他能有宽高
+		yuan.style.position = "absolute";
+		// 把获取的随机宽高设置给span宽高
+		yuan.style.width = size + "px";
+		yuan.style.height = size + "px";
+		// 把随机颜色设置给span为背景
+		yuan.style.backgroundColor = color;
+		// 把span设置为圆
+		yuan.style.borderRadius = '50%';
+		
+		yuan.style.animation = 'aa 2s linear infinite';
+		
+		// 重点把获取到的x坐标设置给span的left(左边距)
+		yuan.style.left = x + "px";
+		// 重点把获取到的x坐标设置给span的top(上边距)
+		yuan.style.top = y + "px";
+	
+	
+		
+		
+		// 2500毫秒以后 删除span （否则会造成页面重绘 卡顿现象）
+	setTimeout(function(){
+		yuan.remove();
+	},2500)
+	}
+	
+	
+	
+</script>
